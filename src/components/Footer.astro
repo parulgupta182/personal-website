@@ -1,0 +1,10 @@
+---
+import profile from '../data/profile.json';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>© {year} {profile.name}</p>
+    <p class="muted">Views and content on this site are my own. <a href="#top">Back to top ↑</a></p>
+  </div>
+</footer>

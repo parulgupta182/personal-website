@@ -1,0 +1,69 @@
+{
+  "_comment": "Most recent first. 'current': true marks the active position in the timeline.",
+  "positions": [
+    {
+      "start": "May 2024",
+      "end": "Present",
+      "current": true,
+      "role": "AI/ML Security Researcher",
+      "organisation": "CARISSMA, Technische Hochschule Ingolstadt",
+      "location": "Ingolstadt, Germany",
+      "points": [
+        "Lead DevGPT cybersecurity research, coordinating a three-person team",
+        "Build large-scale vulnerability-data analysis and validation pipelines",
+        "Research CWE label–code consistency and software vulnerability evidence",
+        "Investigate AI-assisted software security and architectural weaknesses",
+        "Contribute to collaborative European cybersecurity R&D",
+        "Contributed to automotive cybersecurity research proposal development, including technical work-package planning and cybersecurity assurance concepts"
+      ]
+    },
+    {
+      "start": "March 2023",
+      "end": "September 2023",
+      "role": "Master's Thesis Researcher",
+      "organisation": "Porsche Engineering",
+      "location": "Germany",
+      "points": [
+        "Developed reinforcement learning methods for occupant safety optimisation",
+        "Implemented custom OpenAI Gym environments",
+        "Evaluated PPO, DQN and A2C approaches",
+        "Reduced simulation-based optimisation evaluation time through learned policy inference"
+      ]
+    },
+    {
+      "start": "July 2022",
+      "end": "December 2022",
+      "role": "Machine Learning Intern",
+      "organisation": "NEC Laboratories Europe",
+      "location": "Heidelberg, Germany",
+      "points": [
+        "Generated artificial (synthetic) biomedical data, working with multimodal data and synthetic oversampling techniques",
+        "Developed graph neural network models for clinical prediction",
+        "Worked briefly on temporal knowledge graphs",
+        "Improved prediction accuracy from 75.0% to 80.3%"
+      ]
+    },
+    {
+      "start": "July 2020",
+      "end": "December 2021",
+      "role": "Machine Learning Research Assistant",
+      "organisation": "Fraunhofer IOSB-AST",
+      "location": "Ilmenau, Germany",
+      "points": [
+        "Developed ML-based network intrusion detection methods",
+        "Built automated network traffic analysis pipelines",
+        "Processed more than 100,000 PCAP recordings"
+      ]
+    },
+    {
+      "start": "November 2017",
+      "end": "August 2019",
+      "role": "Data and Automation System Engineer",
+      "organisation": "Infosys Technologies Limited",
+      "location": "Bengaluru, India",
+      "points": [
+        "Led Python-based test automation for Fortune 500 clients, optimising QA processes"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "_comment": "One entry per country (or trip). 'continent' groups the list. 'photos' is a list of { \"src\": \"images/travel/<file>.jpg\", \"caption\": \"...\" } — put the image files in public/images/travel/. The first photo is shown large; up to three appear on the card and all of them open in a viewer when clicked. 'bestPart' is shown as the highlight of the trip. Entries with \"placeholder\": true are examples — replace or delete them.",
+  "intro": "Travel is one of my favourite ways to spend time away from research. Here are some of the places I have visited, with a few photos and the best part of each trip.",
+  "trips": [
+    {
+      "country": "Portugal",
+      "continent": "Europe",
+      "places": [
+        "Porto",
+        "Douro Valley",
+        "Aveiro"
+      ],
+      "year": "2026",
+      "bestPart": "",
+      "photos": []
+    },
+    {
+      "country": "Austria",
+      "continent": "Europe",
+      "places": [
+        "Salzburg",
+        "Vienna"
+      ],
+      "year": "",
+      "bestPart": "",
+      "photos": []
+    },
+    {
+      "country": "Switzerland",
+      "continent": "Europe",
+      "places": [
+        "Zurich"
+      ],
+      "year": "",
+      "bestPart": "",
+      "photos": []
+    },
+    {
+      "country": "Italy",
+      "continent": "Europe",
+      "places": [
+        "Rome",
+        "Verona"
+      ],
+      "year": "",
+      "bestPart": "",
+      "photos": []
+    },
+    {
+      "country": "Netherlands",
+      "continent": "Europe",
+      "places": [
+        "Amsterdam",
+        "The Hague"
+      ],
+      "year": "",
+      "bestPart": "",
+      "photos": []
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import profile from '../data/profile.json';
+import { withBase } from '../lib/utils';
+
+/** `current` is the page id ("home", "work", "travel", "hobbies"). */
+interface Props { current?: string }
+const { current = 'home' } = Astro.props;
+const isHome = current === 'home';
+
+// "#about" links scroll on the homepage and point back to it from other pages.
+const resolve = (href: string) =>
+  href.startsWith('#') ? (isHome ? href : withBase(`/${href}`)) : withBase(href);
+const pageId = (href: string) => href.replace(/\/$/, '');
+---
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href={isHome ? '#top' : withBase('/')} aria-label={isHome ? `${profile.name} — back to top` : `${profile.name} — homepage`}>
+      <span class="brand__mark" aria-hidden="true">PG</span>
+      <span class="brand__name">{profile.name}</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list" id="nav-list" data-nav-list>
+        {site.nav.map((item) => {
+          const isSection = item.href.startsWith('#');
+          return (
+            <li>
+              <a
+                class="nav__link"
+                href={resolve(item.href)}
+                data-nav-link={isSection ? 'section' : 'page'}
+                aria-current={!isSection && pageId(item.href) === current ? 'page' : undefined}
+              >{item.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Toggle dark mode">
+        <Icon name="moon" class="icon-moon" />
+        <Icon name="sun" class="icon-sun" />
+      </button>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-controls="nav-list" aria-expanded="false" aria-label="Open menu">
+        <Icon name="menu" class="icon-open" />
+        <Icon name="close" class="icon-close" />
+      </button>
+    </div>
+  </div>
+</header>

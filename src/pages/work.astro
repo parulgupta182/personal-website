@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import WorkBackground from '../components/WorkBackground.astro';
+import Research from '../components/Research.astro';
+import Experience from '../components/Experience.astro';
+import Publications from '../components/Publications.astro';
+import Education from '../components/Education.astro';
+import profile from '../data/profile.json';
+---
+<Base title="Work — Parul Gupta" description="Research, experience, publications and education of Parul Gupta, AI/ML security researcher.">
+  <Header current="work" />
+  <main id="main">
+    <PageIntro eyebrow="Work" title="Work & research" lede={profile.workIntro}>
+      <ul class="jump">
+        <li><a href="#background">Background</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#education">Education</a></li>
+      </ul>
+    </PageIntro>
+    <WorkBackground />
+    <Research />
+    <Experience />
+    <Publications />
+    <Education />
+  </main>
+  <Footer />
+</Base>

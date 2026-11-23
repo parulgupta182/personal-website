@@ -1,0 +1,29 @@
+---
+import profile from '../data/profile.json';
+import { showPlaceholders, withBase } from '../lib/utils';
+---
+<section class="hero hero--compact" id="top" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="hero__kicker">{profile.greeting}</p>
+      <h1 id="hero-title">{profile.name}</h1>
+      <p class="hero__tagline">
+        {profile.tagline.map((t, i) => (
+          <><span class="hero__tag">{t}</span>{i < profile.tagline.length - 1 && <span class="hero__dot" aria-hidden="true">·</span>}</>
+        ))}
+      </p>
+      <p class="hero__intro">{profile.intro}</p>
+    </div>
+
+    <figure class="portrait">
+      {profile.photo ? (
+        <img src={withBase(profile.photo)} alt={profile.photoAlt} width="480" height="600" loading="eager" decoding="async" />
+      ) : (
+        <div class="portrait__placeholder" role="img" aria-label={`${profile.name} monogram`}>
+          <span class="portrait__mono" aria-hidden="true">PG</span>
+          {showPlaceholders && <span class="portrait__note">Photo placeholder<br /><small>public/images/portrait.jpg</small></span>}
+        </div>
+      )}
+    </figure>
+  </div>
+</section>

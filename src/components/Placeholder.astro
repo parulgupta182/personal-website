@@ -1,0 +1,14 @@
+---
+/**
+ * Visible, clearly labelled placeholder for content that has not been provided yet.
+ * Renders nothing when `showPlaceholders` is false in src/data/site.json.
+ */
+import { showPlaceholders } from '../lib/utils';
+interface Props { label: string; hint?: string; block?: boolean }
+const { label, hint, block = false } = Astro.props;
+---
+{showPlaceholders && (
+  block
+    ? <div class="ph ph--block" title={hint}><span class="ph__tag">Placeholder</span>{label}{hint && <span class="ph__hint">{hint}</span>}</div>
+    : <span class="ph" title={hint}><span class="ph__tag">To add</span>{label}</span>
+)}

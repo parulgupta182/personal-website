@@ -1,0 +1,11 @@
+My path into security research began in applied machine learning, and each stop along the way has shaped how I work today.
+
+It started at **Fraunhofer IOSB-AST** in Ilmenau, my first step into the German research environment. As a research assistant, I developed machine-learning methods for network intrusion detection and built the pipelines needed to analyse large volumes of recorded network traffic. More than any single project, Fraunhofer taught me what research really means: asking careful questions, working patiently with data and letting the evidence lead.
+
+At **NEC Laboratories Europe** in Heidelberg, I worked on generating artificial biomedical data, followed by a shorter stint on graph neural networks and temporal knowledge graphs. It was also my first time in a truly international team. Colleagues from Japan, Italy, Spain and many other countries brought their own perspectives to every discussion, and the atmosphere was welcoming and genuinely collaborative. I met so many passionate people there, and it remains one of the most rewarding chapters of my career.
+
+Writing my Master's thesis at **Porsche Engineering** was my entry into the automotive industry, and it truly amazed me. Working within the Porsche world is a dream for many people who come to Germany, and it was certainly one of mine. While applying reinforcement learning to occupant safety optimisation, I came to appreciate how the German automotive industry works: clear processes, high standards and an eye for every detail. It opened the door to automotive AI and the wider mobility industry.
+
+Since 2024 I have been at **CARISSMA, THI**, where my work centres on software security. I study how vulnerability datasets are constructed and how far they can be relied upon — in particular, whether the CWE labels assigned to vulnerabilities are consistent with the code they describe. I also investigate software security architectures and Broken Access Control, and how AI-assisted methods can support vulnerability analysis.
+
+Across these projects I value careful data work, reproducible experiments and conclusions that stay close to the evidence. I am glad to hear from researchers and industry teams working on AI security, vulnerability analysis and secure software engineering.

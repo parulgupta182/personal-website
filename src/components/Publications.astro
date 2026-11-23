@@ -1,0 +1,80 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+import data from '../data/publications.json';
+import research from '../data/research.json';
+import profile from '../data/profile.json';
+import { showPlaceholders, withBase, doiHref } from '../lib/utils';
+
+const pubs = data.publications.filter((p) => showPlaceholders || !p.placeholder);
+const types = [...new Set(pubs.map((p) => p.type).filter(Boolean))];
+const areaTitle = (id: string) => research.areas.find((a) => a.id === id)?.title ?? '';
+const href = (u: string) => (/^https?:/.test(u) ? u : withBase(u));
+const hasPlaceholders = pubs.some((p) => p.placeholder);
+---
+<section class="section section--tint" id="publications" aria-labelledby="publications-title">
+  <div class="container">
+    <SectionHeading index="04" title="Publications" id="publications" />
+
+    {hasPlaceholders && (
+      <div class="ph ph--block notice">
+        <span class="ph__tag">Placeholder</span>
+        The entries below show the publication format only. Replace them with your publications in <code>src/data/publications.json</code>.
+      </div>
+    )}
+
+    {types.length > 1 && (
+      <div class="filters" role="group" aria-label="Filter publications by type" data-filters>
+        <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+        {types.map((t) => <button type="button" class="chip" data-filter={t} aria-pressed="false">{t}</button>)}
+      </div>
+    )}
+
+    {pubs.length === 0 ? (
+      <p class="muted">A list of publications will appear here.</p>
+    ) : (
+      <ol class="pubs" data-pubs>
+        {pubs.map((p, i) => (
+          <li class={`pub reveal ${p.placeholder ? 'pub--placeholder' : ''}`} data-type={p.type}>
+            <div class="pub__meta">
+              <span class="pub__year">{p.year}</span>
+              {p.type && <span class="pub__type">{p.type}</span>}
+            </div>
+            <div class="pub__body">
+              <h3 class="pub__title">
+                {p.placeholder && <span class="ph__tag">Example</span>}
+                {p.title}
+              </h3>
+              <p class="pub__authors">
+                {p.authors.map((a, j) => (
+                  <>{a === profile.highlightAuthor ? <strong>{a}</strong> : a}{j < p.authors.length - 1 ? ', ' : ''}</>
+                ))}
+              </p>
+              <p class="pub__venue">
+                <em>{p.venue}</em>{p.status && <span class="badge badge--soft">{p.status}</span>}
+                {p.area && areaTitle(p.area) && <a class="pub__area" href={`#${p.area}`}>{areaTitle(p.area)}</a>}
+              </p>
+              <div class="pub__links">
+                {p.doi && <a href={doiHref(p.doi)} target="_blank" rel="noopener noreferrer">DOI</a>}
+                {p.pdf && <a href={href(p.pdf)} target="_blank" rel="noopener noreferrer">PDF</a>}
+                {p.code && <a href={p.code} target="_blank" rel="noopener noreferrer">Code</a>}
+                {p.dataset && <a href={p.dataset} target="_blank" rel="noopener noreferrer">Dataset</a>}
+                {p.placeholder && !p.doi && <span class="pub__ghost">DOI · PDF · Code · Dataset</span>}
+                {p.bibtex && (
+                  <details class="bibtex">
+                    <summary>BibTeX</summary>
+                    <div class="bibtex__box">
+                      <pre id={`bib-${i}`}><code>{p.bibtex}</code></pre>
+                      <button type="button" class="copy-btn" data-copy={`bib-${i}`}><Icon name="copy" size={14} /><span>Copy</span></button>
+                    </div>
+                  </details>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
+
+  </div>
+</section>

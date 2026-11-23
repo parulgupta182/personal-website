@@ -1,0 +1,29 @@
+---
+/**
+ * A profile link. If `href` is empty it becomes a labelled placeholder button
+ * (or disappears entirely when placeholders are switched off).
+ */
+import Icon from './Icon.astro';
+import { showPlaceholders } from '../lib/utils';
+interface Props {
+  href?: string; label: string; icon: string;
+  variant?: 'primary' | 'ghost'; download?: boolean; external?: boolean;
+}
+const { href = '', label, icon, variant = 'ghost', download = false, external = false } = Astro.props;
+const isExternal = external || /^https?:/.test(href);
+---
+{href ? (
+  <a
+    class={`btn btn--${variant}`}
+    href={href}
+    download={download ? '' : undefined}
+    target={isExternal ? '_blank' : undefined}
+    rel={isExternal ? 'noopener noreferrer' : undefined}
+  >
+    <Icon name={icon} size={17} /><span>{label}</span>
+  </a>
+) : showPlaceholders ? (
+  <span class="btn btn--placeholder" aria-disabled="true" title={`${label} link not yet provided — add it in src/data/profile.json`}>
+    <Icon name={icon} size={17} /><span>{label}</span><span class="btn__ph">add link</span>
+  </span>
+) : null}

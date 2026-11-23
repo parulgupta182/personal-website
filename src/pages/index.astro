@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import About from '../components/About.astro';
+import WhatIDo from '../components/WhatIDo.astro';
+import Beyond from '../components/Beyond.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base>
+  <Header current="home" />
+  <main id="main">
+    <Hero />
+    <QuickFacts />
+    <WhatIDo />
+    <About />
+    <Beyond />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

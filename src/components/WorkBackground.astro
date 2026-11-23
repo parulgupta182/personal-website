@@ -1,0 +1,40 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Content as Background } from '../content/work-background.md';
+
+const interests = [
+  'Vulnerability datasets',
+  'CWE label–code consistency',
+  'Software security architectures',
+  'Broken Access Control',
+  'AI-assisted vulnerability analysis',
+];
+const path = [
+  { org: 'Fraunhofer IOSB-AST', topic: 'ML-based network intrusion detection' },
+  { org: 'NEC Laboratories Europe', topic: 'Synthetic biomedical data & graph learning' },
+  { org: 'Porsche Engineering', topic: 'Reinforcement learning' },
+  { org: 'CARISSMA, THI', topic: 'Software & AI security research' },
+];
+---
+<section class="section" id="background" aria-labelledby="background-title">
+  <div class="container">
+    <SectionHeading index="01" title="Background" id="background" />
+    <div class="about">
+      <div class="prose reveal">
+        <Background />
+      </div>
+      <aside class="about__aside reveal" aria-label="Summary">
+        <h3 class="aside-title">Focus</h3>
+        <ul class="tag-list">
+          {interests.map((i) => <li>{i}</li>)}
+        </ul>
+        <h3 class="aside-title">Research path</h3>
+        <ol class="path">
+          {path.map((p) => (
+            <li><span class="path__org">{p.org}</span><span class="path__topic">{p.topic}</span></li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+  </div>
+</section>

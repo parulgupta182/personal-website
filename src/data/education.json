@@ -1,0 +1,25 @@
+{
+  "_comment": "Empty strings render as labelled placeholders.",
+  "entries": [
+    {
+      "institution": "Technische Universität Ilmenau",
+      "location": "Ilmenau, Germany",
+      "level": "M.Sc.",
+      "degree": "Computer and System Engineering",
+      "start": "2019",
+      "end": "2023",
+      "details": [],
+      "thesis": "Use of Reinforcement Learning to Minimise Occupant Loads During Crash (carried out at Porsche Engineering)"
+    },
+    {
+      "institution": "Uttar Pradesh Technical University",
+      "location": "India",
+      "level": "B.Tech.",
+      "degree": "Information Technology",
+      "start": "2013",
+      "end": "2017",
+      "details": [],
+      "thesis": ""
+    }
+  ]
+}

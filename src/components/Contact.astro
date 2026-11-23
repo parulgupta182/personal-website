@@ -1,0 +1,58 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+import EmailReveal from './EmailReveal.astro';
+import profile from '../data/profile.json';
+import { withBase, showPlaceholders } from '../lib/utils';
+const L = profile.links;
+
+const channels = [
+  { key: 'linkedin', label: 'LinkedIn', icon: 'linkedin', href: L.linkedin, display: L.linkedin.replace(/^https?:\/\/(www\.)?/, '') },
+  { key: 'github', label: 'GitHub', icon: 'code', href: L.github, display: L.github.replace(/^https?:\/\/(www\.)?/, '') },
+  { key: 'orcid', label: 'ORCID', icon: 'orcid', href: L.orcid, display: L.orcid.replace(/^https?:\/\/(www\.)?orcid\.org\//, ''), optional: true },
+];
+---
+<section class="section section--tint" id="contact" aria-labelledby="contact-title">
+  <div class="container contact">
+    <div class="contact__intro reveal">
+      <SectionHeading index="03" title="Get in touch" id="contact" />
+      <p class="lede">
+        Whether it is about a role, a collaboration or a travel tip, I am happy to hear from you.
+        Email or LinkedIn is the quickest way to reach me.
+      </p>
+      {L.cv && (
+        <a class="cv-card" href={withBase(L.cv)} download>
+          <span class="cv-card__icon"><Icon name="file" size={26} /></span>
+          <span class="cv-card__text"><strong>Curriculum Vitae</strong><small>PDF · download</small></span>
+          <Icon name="download" size={18} class="cv-card__dl" />
+        </a>
+      )}
+    </div>
+
+    <ul class="channels reveal">
+      <li><EmailReveal variant="channel" /></li>
+      {channels.map((c) => {
+        if (!c.href && !showPlaceholders) return null;
+        return (
+          <li>
+            {c.href ? (
+              <a class="channel" href={c.href} target="_blank" rel="noopener noreferrer">
+                <span class="channel__icon"><Icon name={c.icon} /></span>
+                <span class="channel__text"><span class="channel__label">{c.label}</span><span class="channel__value">{c.display}</span></span>
+                <Icon name="arrow" size={16} class="channel__arrow" />
+              </a>
+            ) : (
+              <div class="channel channel--placeholder" title="Add this link in src/data/profile.json">
+                <span class="channel__icon"><Icon name={c.icon} /></span>
+                <span class="channel__text">
+                  <span class="channel__label">{c.label}{c.optional && <span class="channel__opt"> (optional)</span>}</span>
+                  <span class="channel__value"><span class="ph__tag">To add</span>link not yet provided</span>
+                </span>
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

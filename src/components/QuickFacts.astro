@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+import LinkButton from './LinkButton.astro';
+import EmailReveal from './EmailReveal.astro';
+import profile from '../data/profile.json';
+import { fillTokens } from '../lib/facts';
+import { withBase } from '../lib/utils';
+const L = profile.links;
+---
+<section class="quick" aria-labelledby="quick-title">
+  <div class="container">
+  <div class="quick__inner">
+    <div class="quick__label">
+      <h2 id="quick-title">Quick facts</h2>
+    </div>
+    <div class="quick__body">
+      <ul class="quick__facts">
+        {profile.quickFacts.map((f) => (
+          <li><span class="quick__icon"><Icon name={f.icon} size={19} /></span><span>{fillTokens(f.text)}</span></li>
+        ))}
+      </ul>
+      <div class="quick__actions">
+        <LinkButton href={L.cv ? withBase(L.cv) : ''} label="CV" icon="download" variant="primary" download />
+        <LinkButton href={L.linkedin} label="LinkedIn" icon="linkedin" />
+        <LinkButton href={L.github} label="GitHub" icon="code" />
+        <EmailReveal variant="btn" />
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

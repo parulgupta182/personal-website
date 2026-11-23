@@ -1,0 +1,30 @@
+{
+  "_comment": "Global settings. Set showPlaceholders to false before going live to hide every unfilled placeholder on the site.",
+  "showPlaceholders": false,
+  "lang": "en",
+  "seoTitle": "Parul Gupta — AI/ML Security Researcher",
+  "seoDescription": "Personal website of Parul Gupta, AI security researcher in Germany: work, travel, plants and books.",
+  "ogImage": "images/og-image.png",
+  "nav": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Work",
+      "href": "work/"
+    },
+    {
+      "label": "Travel",
+      "href": "travel/"
+    },
+    {
+      "label": "Hobbies",
+      "href": "hobbies/"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ]
+}

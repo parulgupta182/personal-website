@@ -1,0 +1,36 @@
+{
+  "_comment": "Each hobby becomes a section on /hobbies/. 'lists' are titled groups. A list has either 'items' (strings → tags, or { \"title\": \"...\", \"author\": \"...\", \"note\": \"...\" } → books) or 'text' (a short paragraph). Items with \"placeholder\": true are shown as labelled placeholders. 'links' are optional: { \"label\": \"...\", \"url\": \"https://...\" } or a page on this site such as \"travel/\". 'showCountries': true lists the countries from travel.json.",
+  "intro": "Outside research, I spend much of my free time with plants, books and travel.",
+  "hobbies": [
+    {
+      "id": "plants",
+      "title": "Plants & balcony gardening",
+      "summary": "A long-standing, hands-on hobby. I keep a small indoor collection and a balcony garden, and I enjoy propagating new plants from cuttings. My approach is practical and low-intervention: the right light, patient watering and not too much fuss.",
+      "lists": [
+        { "title": "Indoor collection", "items": ["Monstera", "Aloe vera", "Ficus", "ZZ plant", "Succulents"] },
+        { "title": "On the balcony", "items": ["Seasonal flowers"] },
+        { "title": "Propagating", "items": ["Aloe", "Monstera", "Ficus"] }
+      ],
+      "links": []
+    },
+    {
+      "id": "reading",
+      "title": "Reading",
+      "summary": "I read a lot growing up, and somewhere in adult life the habit slipped away. I am now rebuilding it, one book at a time.",
+      "lists": [
+        { "title": "Currently reading", "items": [{ "title": "The Palace of Illusions", "author": "Chitra Banerjee Divakaruni" }] },
+        { "title": "Up next", "items": [{ "title": "The Stationery Shop of Tehran", "author": "Marjan Kamali" }] },
+        { "title": "My goal", "text": "Start with one book a month, then move to two a month, and keep building from there." }
+      ],
+      "links": []
+    },
+    {
+      "id": "travel",
+      "title": "Travel",
+      "summary": "Travel is one of my favourite ways to spend time away from research: exploring new places, their food and their landscapes.",
+      "showCountries": true,
+      "lists": [],
+      "links": [{ "label": "See where I have travelled", "url": "travel/" }]
+    }
+  ]
+}

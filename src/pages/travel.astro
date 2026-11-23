@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import data from '../data/travel.json';
+import { showPlaceholders, withBase } from '../lib/utils';
+
+type Photo = { src: string; caption?: string };
+type Trip = {
+  placeholder?: boolean; country: string; continent: string; places: string[];
+  year: string; bestPart: string; photos: Photo[];
+};
+const all = data.trips as Trip[];
+const trips = all.filter((t) => showPlaceholders || !t.placeholder);
+
+// Group by continent, keeping the order in which continents first appear.
+const groups = new Map<string, Trip[]>();
+for (const t of trips) {
+  if (!groups.has(t.continent)) groups.set(t.continent, []);
+  groups.get(t.continent)!.push(t);
+}
+const hasPlaceholders = trips.some((t) => t.placeholder);
+const missingPhotos = all.filter((t) => !t.placeholder).some((t) => !t.photos.length);
+const alt = (t: Trip, p: Photo) => p.caption || `${t.places[0] ?? t.country}, ${t.country}`;
+---
+<Base title="Travel — Parul Gupta" description="Places Parul Gupta has travelled to, with photos and highlights.">
+  <Header current="travel" />
+  <main id="main">
+    <PageIntro eyebrow="Outside work" title="Travel" lede={data.intro} />
+
+    <section class="section section--tight" aria-label="Places visited">
+      <div class="container">
+        {(hasPlaceholders || (showPlaceholders && missingPhotos)) && (
+          <div class="ph ph--block notice">
+            <span class="ph__tag">Placeholder</span>
+            Photos, years and the best part of each trip are still to add. Edit <code>src/data/travel.json</code> and put images in <code>public/images/travel/</code>.
+          </div>
+        )}
+
+        {[...groups].map(([continent, list]) => (
+          <div class="atlas reveal">
+            <h2 class="atlas__continent">{continent}</h2>
+            <ul class="atlas__grid">
+              {list.map((t) => {
+                const shown = t.photos.slice(0, 3);
+                const extra = t.photos.length - shown.length;
+                return (
+                  <li class={`trip ${t.placeholder ? 'trip--placeholder' : ''}`}>
+                    {shown.length > 0 ? (
+                      <div class={`gallery gallery--${shown.length}`} data-gallery>
+                        {t.photos.map((p, i) => (
+                          <button
+                            type="button"
+                            class={`gallery__item ${i >= 3 ? 'is-hidden' : ''}`}
+                            data-full={withBase(p.src)}
+                            data-caption={p.caption ?? ''}
+                            aria-label={`Open photo: ${alt(t, p)}`}
+                          >
+                            <img src={withBase(p.src)} alt={alt(t, p)} loading="lazy" decoding="async" />
+                            {i === 2 && extra > 0 && <span class="gallery__more">+{extra}</span>}
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <div class="trip__media">
+                        <span class="trip__initial" aria-hidden="true">{t.placeholder ? '·' : t.country.charAt(0)}</span>
+                        {showPlaceholders && !t.placeholder && <span class="trip__ph">Photos to add</span>}
+                      </div>
+                    )}
+                    <div class="trip__body">
+                      <div class="trip__head">
+                        <h3>{t.placeholder && <span class="ph__tag">Example</span>}{t.country}</h3>
+                        {t.year && <span class="trip__year">{t.year}</span>}
+                      </div>
+                      <p class="trip__places">{t.places.join(' · ')}</p>
+                      {t.bestPart ? (
+                        <p class="trip__best"><span class="trip__best-label">Best part</span>{t.bestPart}</p>
+                      ) : showPlaceholders && (
+                        <p class="trip__best"><span class="ph"><span class="ph__tag">To add</span>best part of the trip</span></p>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+      <button type="button" class="lightbox__btn lightbox__close" data-lb="close" aria-label="Close">×</button>
+      <button type="button" class="lightbox__btn lightbox__prev" data-lb="prev" aria-label="Previous photo">‹</button>
+      <figure class="lightbox__fig">
+        <img alt="" data-lightbox-img />
+        <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+      </figure>
+      <button type="button" class="lightbox__btn lightbox__next" data-lb="next" aria-label="Next photo">›</button>
+    </dialog>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  const box = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const img = document.querySelector<HTMLImageElement>('[data-lightbox-img]');
+  const cap = document.querySelector<HTMLElement>('[data-lightbox-caption]');
+  let set: HTMLButtonElement[] = [];
+  let idx = 0;
+  const show = (i: number) => {
+    if (!img || !cap || !set.length) return;
+    idx = (i + set.length) % set.length;
+    const b = set[idx];
+    img.src = b.dataset.full!;
+    img.alt = b.querySelector('img')?.alt ?? '';
+    cap.textContent = [b.dataset.caption, set.length > 1 ? `${idx + 1} / ${set.length}` : ''].filter(Boolean).join('  ·  ');
+    box?.classList.toggle('is-single', set.length < 2);
+  };
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((g) => {
+    const btns = [...g.querySelectorAll<HTMLButtonElement>('[data-full]')];
+    btns.forEach((b, i) => b.addEventListener('click', () => {
+      set = btns; show(i);
+      if (box && !box.open) box.showModal?.();
+    }));
+  });
+  box?.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const act = t.closest<HTMLElement>('[data-lb]')?.dataset.lb;
+    if (act === 'close' || t === box) box.close();
+    else if (act === 'prev') show(idx - 1);
+    else if (act === 'next') show(idx + 1);
+  });
+  box?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+</script>

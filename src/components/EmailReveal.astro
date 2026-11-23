@@ -1,0 +1,39 @@
+---
+/**
+ * Spam-safe email: the address is stored encoded and only assembled in the browser
+ * when a visitor clicks "Show email". Bots reading the HTML never see it.
+ */
+import Icon from './Icon.astro';
+import profile from '../data/profile.json';
+import { encodeEmail } from '../lib/facts';
+import { showPlaceholders } from '../lib/utils';
+
+interface Props { variant?: 'btn' | 'channel' }
+const { variant = 'btn' } = Astro.props;
+const email = profile.links.email;
+const enc = email ? encodeEmail(email) : '';
+---
+{email ? (
+  variant === 'btn' ? (
+    <button type="button" class="btn btn--ghost" data-email={enc} data-email-style="btn">
+      <Icon name="mail" size={17} /><span>Show email</span>
+    </button>
+  ) : (
+    <button type="button" class="channel channel--btn" data-email={enc} data-email-style="channel">
+      <span class="channel__icon"><Icon name="mail" /></span>
+      <span class="channel__text"><span class="channel__label">Email</span><span class="channel__value">Click to show address</span></span>
+      <Icon name="eye" size={16} class="channel__arrow" />
+    </button>
+  )
+) : showPlaceholders ? (
+  variant === 'btn' ? (
+    <span class="btn btn--placeholder" aria-disabled="true" title="Add your email in src/data/profile.json">
+      <Icon name="mail" size={17} /><span>Email</span><span class="btn__ph">add link</span>
+    </span>
+  ) : (
+    <div class="channel channel--placeholder" title="Add your email in src/data/profile.json">
+      <span class="channel__icon"><Icon name="mail" /></span>
+      <span class="channel__text"><span class="channel__label">Email</span><span class="channel__value"><span class="ph__tag">To add</span>shown only after a click, to keep spam bots away</span></span>
+    </div>
+  )
+) : null}

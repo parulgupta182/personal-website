@@ -1,0 +1,42 @@
+{
+  "_comment": "Leave a value as an empty string \"\" to show a labelled placeholder (or hide it when showPlaceholders is false).",
+  "name": "Parul Gupta",
+  "greeting": "Hello, I'm",
+  "tagline": [
+    "AI security researcher",
+    "Traveller",
+    "Plant parent",
+    "Returning reader"
+  ],
+  "intro": "I work at the intersection of software security and AI, where I study how security weaknesses arise in code and how AI can help find them. Away from the desk, I am usually planning the next trip, looking after my plants or getting back into a good book.",
+  "workIntro": "I am an AI/ML Security Researcher at CARISSMA, Technische Hochschule Ingolstadt, Germany. My research focuses on software vulnerability analysis, security data quality, architectural security weaknesses and AI-assisted approaches to understanding and evaluating software security.",
+  "photo": "",
+  "photoAlt": "Portrait of Parul Gupta",
+  "_quickFacts_comment": "Shown in the Quick facts block. Icons: scholar, plane, leaf, book, code, pin, mail. {currentBook} is replaced by the first 'Currently reading' title in hobbies.json.",
+  "quickFacts": [
+    {
+      "icon": "scholar",
+      "text": "AI/ML Security Researcher at THI"
+    },
+    {
+      "icon": "plane",
+      "text": "Traveller, always planning the next trip"
+    },
+    {
+      "icon": "leaf",
+      "text": "Plant parent & balcony gardener"
+    },
+    {
+      "icon": "book",
+      "text": "Currently reading {currentBook}"
+    }
+  ],
+  "links": {
+    "cv": "",
+    "emailEncoded": "bW9jLmxpYW1nQDI4MWF0cHVnbHVyYXA=",
+    "github": "https://github.com/parulgupta182",
+    "linkedin": "https://www.linkedin.com/in/parulgupta182/",
+    "orcid": "https://orcid.org/0009-0009-7414-1360"
+  },
+  "highlightAuthor": "Parul Gupta"
+}

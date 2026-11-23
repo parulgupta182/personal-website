@@ -1,0 +1,74 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Placeholder from './Placeholder.astro';
+import Icon from './Icon.astro';
+import data from '../data/research.json';
+import { showPlaceholders } from '../lib/utils';
+
+type Rel = { label: string; url: string };
+const groups: { key: 'publications' | 'code' | 'project'; label: string; icon: string }[] = [
+  { key: 'publications', label: 'Publications', icon: 'book' },
+  { key: 'code', label: 'Code', icon: 'code' },
+  { key: 'project', label: 'Project details', icon: 'link' },
+];
+---
+<section class="section section--tint" id="research" aria-labelledby="research-title">
+  <div class="container">
+    <SectionHeading
+      index="02"
+      title="Research"
+      id="research"
+      lede="My work examines the evidence that software-security research depends on: the data used to train and evaluate tools, the code context needed to understand a weakness, and how AI-assisted methods can be evaluated with care."
+    />
+
+    <div class="research-grid">
+      {data.areas.map((a) => {
+        const hasRelated = groups.some((g) => (a.related[g.key] as Rel[]).length > 0);
+        return (
+          <article class="research-card reveal" id={a.id} aria-labelledby={`${a.id}-h`}>
+            <header class="research-card__head">
+              <span class="research-card__letter" aria-hidden="true">{a.letter}</span>
+              <div>
+                <h3 id={`${a.id}-h`}>{a.title}</h3>
+                {a.status && <span class="badge">{a.status}</span>}
+              </div>
+            </header>
+
+            <p class="research-card__overview">{a.overview}</p>
+
+            {a.stats.length > 0 && (
+              <dl class="stats">
+                {a.stats.map((s) => (
+                  <div class="stats__item"><dt>{s.label}</dt><dd>{s.value}</dd></div>
+                ))}
+              </dl>
+            )}
+
+            <ul class="points">
+              {a.points.map((p) => <li>{p}</li>)}
+            </ul>
+
+            {(hasRelated || showPlaceholders) && (
+              <footer class="related">
+                {groups.map((g) => {
+                  const items = a.related[g.key] as Rel[];
+                  if (!items.length && !showPlaceholders) return null;
+                  return (
+                    <div class="related__row">
+                      <span class="related__label"><Icon name={g.icon} size={15} />{g.label}</span>
+                      <span class="related__items">
+                        {items.length
+                          ? items.map((r) => <a href={r.url} target="_blank" rel="noopener noreferrer">{r.label}<Icon name="arrow" size={13} /></a>)
+                          : <Placeholder label={`${g.label.toLowerCase()} for this area`} hint="Edit related.* in src/data/research.json" />}
+                      </span>
+                    </div>
+                  );
+                })}
+              </footer>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

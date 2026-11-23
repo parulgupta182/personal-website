@@ -1,0 +1,43 @@
+{
+  "_comment": "Add one object per publication, newest first. Delete the two example entries marked \"placeholder\": true once you add real ones. 'type' drives the filter buttons (e.g. Conference, Journal, Workshop, Preprint, Thesis). 'area' optionally links to a research area id from research.json. Leave a link empty (\"\") to omit it.",
+  "publications": [
+    {
+      "title": "Provenance-Preserving Auditing of Vulnerability Labels in Large-Scale CVE-Derived Datasets",
+      "authors": [
+        "Parul Gupta",
+        "Lea Achter",
+        "Julienne Eder",
+        "Hans-Joachim Hof"
+      ],
+      "venue": "2nd International Workshop on Assessment with New methodologies, Unified Benchmarks, and environments, of Intrusion detection and response Systems (ANUBIS), at the 31st European Symposium on Research in Computer Security (ESORICS 2026)",
+      "year": "2026",
+      "type": "Workshop",
+      "status": "Accepted",
+      "area": "vulnerability-datasets",
+      "doi": "",
+      "pdf": "https://superviz.inria.fr/assets/pdf/anubis26/ESORICS_2026_paper_1192.pdf",
+      "code": "",
+      "dataset": "",
+      "bibtex": "@inproceedings{gupta2026provenance,\n  title     = {Provenance-Preserving Auditing of Vulnerability Labels in Large-Scale CVE-Derived Datasets},\n  author    = {Gupta, Parul and Achter, Lea and Eder, Julienne and Hof, Hans-Joachim},\n  booktitle = {2nd International Workshop on Assessment with New methodologies, Unified Benchmarks, and environments, of Intrusion detection and response Systems (ANUBIS), co-located with the 31st European Symposium on Research in Computer Security (ESORICS 2026)},\n  year      = {2026},\n  note      = {Accepted}\n}"
+    },
+    {
+      "title": "Minimizing occupant loads in vehicle crashes through reinforcement learning-based restraint system design: assessing performance and transferability",
+      "authors": [
+        "Janis Mathieu",
+        "Parul Gupta",
+        "Michael Di Roberto",
+        "Michael Vielhaber"
+      ],
+      "venue": "Proceedings of the Design Society (DESIGN 2024), Dubrovnik, Croatia, pp. 2139–2148",
+      "year": "2024",
+      "type": "Conference",
+      "status": "Open access",
+      "area": "applied-ml",
+      "doi": "10.1017/pds.2024.216",
+      "pdf": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DDF19C447C9BAC4CF82E90DB52668832/S2732527X24002165a.pdf/minimizing-occupant-loads-in-vehicle-crashes-through-reinforcement-learning-based-restraint-system-design-assessing-performance-and-transferability.pdf",
+      "code": "",
+      "dataset": "",
+      "bibtex": "@inproceedings{mathieu2024occupant,\n  title     = {Minimizing occupant loads in vehicle crashes through reinforcement learning-based restraint system design: assessing performance and transferability},\n  author    = {Mathieu, Janis and Gupta, Parul and Di Roberto, Michael and Vielhaber, Michael},\n  booktitle = {Proceedings of the Design Society (DESIGN 2024)},\n  pages     = {2139--2148},\n  year      = {2024},\n  publisher = {Cambridge University Press},\n  doi       = {10.1017/pds.2024.216}\n}"
+    }
+  ]
+}

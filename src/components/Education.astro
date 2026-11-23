@@ -1,0 +1,35 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Placeholder from './Placeholder.astro';
+import data from '../data/education.json';
+---
+<section class="section" id="education" aria-labelledby="education-title">
+  <div class="container">
+    <SectionHeading index="05" title="Education" id="education" />
+    <div class="edu-list">
+      {data.entries.map((e) => (
+        <article class="edu reveal">
+          <div class="edu__date">
+            {e.start || e.end
+              ? <span>{e.start}{e.start && e.end ? ' – ' : ''}{e.end}</span>
+              : <Placeholder label="dates" hint="Edit start/end in src/data/education.json" />}
+          </div>
+          <div class="edu__body">
+            <h3>{e.institution}</h3>
+            <p class="edu__level">
+              {e.level}
+              {e.degree ? <span> · {e.degree}</span> : <> · <Placeholder label="degree title" hint="Edit degree in src/data/education.json" /></>}
+            </p>
+            <p class="edu__loc">{e.location}</p>
+            {e.thesis
+              ? <p class="edu__thesis"><span class="edu__k">Thesis</span>{e.thesis}</p>
+              : <p class="edu__thesis"><Placeholder label="thesis title / details" hint="Edit thesis in src/data/education.json" /></p>}
+            {e.details.length > 0
+              ? <ul class="points">{e.details.map((d: string) => <li>{d}</li>)}</ul>
+              : <p><Placeholder label="specialisation, grade or other academic details (optional)" hint="Edit details in src/data/education.json" /></p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import experience from '../data/experience.json';
+import { withBase } from '../lib/utils';
+import { Content as WhatText } from '../content/what-i-do.md';
+const short = (d: string) => d.replace(/^(January|February|March|April|May|June|July|August|September|October|November|December)/, (m) => m.slice(0, 3));
+---
+<section class="section section--tint" id="what-i-do" aria-labelledby="what-i-do-title">
+  <div class="container">
+    <SectionHeading index="01" title="What I do" id="what-i-do" />
+    <div class="whatido">
+      <div class="prose reveal">
+        <WhatText />
+        <p><a class="hobby__cta" href={withBase('work/')}>More about my work<span aria-hidden="true">→</span></a></p>
+      </div>
+
+      <ol class="mini-timeline reveal" aria-label="Career at a glance">
+        {experience.positions.map((p) => (
+          <li class={p.current ? 'is-current' : ''}>
+            <span class="mini-timeline__date">{short(p.start)} – {short(p.end)}</span>
+            <span class="mini-timeline__role">{p.role}</span>
+            <span class="mini-timeline__org">{p.organisation}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

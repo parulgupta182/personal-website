@@ -1,0 +1,109 @@
+{
+  "_comment": "Research areas. 'status' is an optional badge. 'related' lists publications, code and project pages; leave arrays empty to show placeholders. Each related item: { \"label\": \"...\", \"url\": \"https://...\" }.",
+  "areas": [
+    {
+      "id": "vulnerability-datasets",
+      "letter": "A",
+      "title": "Vulnerability Datasets & CWE Validation",
+      "status": "",
+      "overview": "Much of vulnerability-detection research rests on datasets that link CVEs to the code changes that fixed them. This work traces that provenance at scale and examines whether the assigned CWE labels are consistent with the code they describe.",
+      "stats": [
+        {
+          "value": "~63,000",
+          "label": "patches"
+        },
+        {
+          "value": "11,227",
+          "label": "CVEs"
+        },
+        {
+          "value": "2,917",
+          "label": "repositories"
+        },
+        {
+          "value": "59,877",
+          "label": "CVE–file units validated"
+        }
+      ],
+      "points": [
+        "Large-scale CVE-to-source-code provenance analysis",
+        "CWE-based validation across CVE–file units",
+        "Vulnerability-label consistency and hierarchy-aware evaluation",
+        "Dataset reliability for downstream security research"
+      ],
+      "related": {
+        "publications": [
+          {
+            "label": "ANUBIS @ ESORICS 2026 (accepted)",
+            "url": "https://superviz.inria.fr/assets/pdf/anubis26/ESORICS_2026_paper_1192.pdf"
+          }
+        ],
+        "code": [],
+        "project": []
+      }
+    },
+    {
+      "id": "architectural-security",
+      "letter": "B",
+      "title": "Architectural Security & Broken Access Control",
+      "status": "Ongoing research",
+      "overview": "Many access-control weaknesses cannot be seen in a single function: they depend on where authorization is enforced across an application. This ongoing work studies architectural security anti-patterns and asks what contextual evidence is needed to understand such vulnerabilities.",
+      "stats": [],
+      "points": [
+        "Architectural security anti-patterns",
+        "Authorization and enforcement placement",
+        "Broken Access Control weaknesses",
+        "Minimum Diagnostic Context and staged code-context analysis",
+        "The contextual evidence needed to understand security vulnerabilities"
+      ],
+      "related": {
+        "publications": [],
+        "code": [],
+        "project": []
+      }
+    },
+    {
+      "id": "ai-assisted-security",
+      "letter": "C",
+      "title": "AI-Assisted Security Research",
+      "status": "",
+      "overview": "Exploring where large language models and learning-based methods can support security analysis, and how to evaluate them carefully, with experimental workflows that others can reproduce.",
+      "stats": [],
+      "points": [
+        "LLM-assisted vulnerability analysis and secure code evaluation",
+        "AST-based weakness-pattern analysis",
+        "Unsupervised learning and stability analysis",
+        "Security evaluation and reproducible experimental workflows"
+      ],
+      "related": {
+        "publications": [],
+        "code": [],
+        "project": []
+      }
+    },
+    {
+      "id": "applied-ml",
+      "letter": "D",
+      "title": "Applied Machine Learning",
+      "status": "Earlier research",
+      "overview": "Before moving into software security, I worked on applied machine learning in industrial and research settings: from network intrusion detection and synthetic biomedical data to safety optimisation in automotive simulation.",
+      "stats": [],
+      "points": [
+        "Reinforcement learning for safety optimisation",
+        "Synthetic biomedical data generation",
+        "Graph neural networks and temporal knowledge graphs",
+        "Intrusion detection and network traffic analysis"
+      ],
+      "related": {
+        "publications": [
+          {
+            "label": "Proceedings of the Design Society (DESIGN 2024)",
+            "url": "https://doi.org/10.1017/pds.2024.216"
+          }
+        ],
+        "code": [],
+        "project": []
+      }
+    }
+  ]
+}

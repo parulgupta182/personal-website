@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import travel from '../data/travel.json';
+import hobbies from '../data/hobbies.json';
+import { withBase } from '../lib/utils';
+
+const countries = [...new Set(travel.trips.filter((t) => !t.placeholder).map((t) => t.country))];
+const cards = [
+  {
+    href: withBase('travel/'),
+    title: 'Travel',
+    text: travel.intro.split('.')[0] + '.',
+    meta: countries.length ? countries.slice(0, 4).join(' · ') + (countries.length > 4 ? ' …' : '') : '',
+  },
+  {
+    href: withBase('hobbies/'),
+    title: 'Hobbies',
+    text: hobbies.intro,
+    meta: hobbies.hobbies.map((h) => h.title.split(' &')[0]).join(' · '),
+  },
+];
+---
+<section class="section section--compact" id="beyond" aria-label="Travel and hobbies">
+  <div class="container">
+    <div class="beyond-grid">
+      {cards.map((c) => (
+        <a class="beyond-card reveal" href={c.href}>
+          <span class="beyond-card__title">{c.title}<Icon name="arrow" size={18} /></span>
+          <span class="beyond-card__text">{c.text}</span>
+          {c.meta && <span class="beyond-card__meta">{c.meta}</span>}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

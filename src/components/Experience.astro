@@ -1,0 +1,26 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import data from '../data/experience.json';
+---
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <SectionHeading index="03" title="Professional Experience" id="experience" />
+    <ol class="timeline">
+      {data.positions.map((p) => (
+        <li class={`timeline__item reveal ${p.current ? 'is-current' : ''}`}>
+          <div class="timeline__date">
+            <time>{p.start}</time><span aria-hidden="true"> – </span><span class="sr-only"> to </span><time>{p.end}</time>
+          </div>
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__body">
+            <h3>{p.role}</h3>
+            <p class="timeline__org">{p.organisation}<span class="timeline__loc"> · {p.location}</span></p>
+            <ul class="points">
+              {p.points.map((pt) => <li>{pt}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

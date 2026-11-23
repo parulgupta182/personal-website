@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import data from '../data/hobbies.json';
+import travel from '../data/travel.json';
+import { showPlaceholders, withBase } from '../lib/utils';
+
+const countries = [...new Set(travel.trips.filter((t) => !t.placeholder).map((t) => t.country))];
+const isExt = (u: string) => /^https?:/.test(u);
+
+type Item = string | { placeholder?: boolean; title: string; author?: string; note?: string };
+const visible = (items: Item[]) =>
+  items.filter((i) => typeof i === 'string' || showPlaceholders || !i.placeholder);
+---
+<Base title="Hobbies — Parul Gupta" description="Plants, reading and travel: what Parul Gupta enjoys outside research.">
+  <Header current="hobbies" />
+  <main id="main">
+    <PageIntro eyebrow="Outside work" title="Hobbies" lede={data.intro}>
+      <ul class="jump">
+        {data.hobbies.map((h) => <li><a href={`#${h.id}`}>{h.title}</a></li>)}
+      </ul>
+    </PageIntro>
+
+    <section class="section section--tight" aria-label="Hobbies">
+      <div class="container hobbies">
+        {data.hobbies.map((h, idx) => (
+          <article class="hobby reveal" id={h.id} aria-labelledby={`${h.id}-h`}>
+            <div class="hobby__lead">
+              <span class="hobby__num">{String(idx + 1).padStart(2, '0')}</span>
+              <h2 id={`${h.id}-h`}>{h.title}</h2>
+              <p>{h.summary}</p>
+              {h.links.length > 0 && (
+                <p class="hobby__links">
+                  {h.links.map((l: { label: string; url: string }) => isExt(l.url)
+                    ? <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}<Icon name="arrow" size={13} /></a>
+                    : <a class="hobby__cta" href={withBase(l.url)}>{l.label}<span aria-hidden="true">→</span></a>
+                  )}
+                </p>
+              )}
+            </div>
+            <div class="hobby__lists">
+              {(h as any).showCountries && countries.length > 0 && (
+                <div class="hobby__list">
+                  <h3>Where I have been</h3>
+                  <ul>{countries.map((c) => <li class="pill">{c}</li>)}</ul>
+                </div>
+              )}
+              {h.lists.map((list: any) => {
+                if (list.text) return (
+                  <div class="hobby__list"><h3>{list.title}</h3><p class="hobby__text">{list.text}</p></div>
+                );
+                const items = visible((list.items ?? []) as Item[]);
+                if (!items.length) return null;
+                return (
+                  <div class="hobby__list">
+                    <h3>{list.title}</h3>
+                    <ul>
+                      {items.map((it) =>
+                        typeof it === 'string'
+                          ? <li class="pill">{it}</li>
+                          : it.placeholder
+                            ? <li class="book"><span class="ph"><span class="ph__tag">To add</span>{it.title}{it.author && ` — ${it.author}`}</span></li>
+                            : <li class="book"><span class="book__title">{it.title}</span>{it.author && <span class="book__author">{it.author}</span>}{it.note && <span class="book__note">{it.note}</span>}</li>
+                      )}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

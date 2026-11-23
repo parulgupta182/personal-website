@@ -1,0 +1,12 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Content as AboutText } from '../content/about.md';
+---
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <SectionHeading index="02" title="A bit more about me" id="about" />
+    <div class="prose prose--personal reveal">
+      <AboutText />
+    </div>
+  </div>
+</section>
