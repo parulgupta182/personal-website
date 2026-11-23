@@ -1,6 +1,6 @@
 # personal-website
 
-Personal academic and professional website of **Parul Gupta**, AI/ML Security Researcher at CARISSMA, Technische Hochschule Ingolstadt.
+Personal academic and professional website.
 
 Built with [Astro](https://astro.build) as a fully static site: no database, no backend, no tracking. Fonts are self-hosted (no requests to Google Fonts). All content lives in small JSON/Markdown files, so most updates never touch the layout code.
 
