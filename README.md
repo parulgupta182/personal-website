@@ -56,7 +56,13 @@ Edit `quickFacts` in `src/data/profile.json`. Each fact has an `icon` (`scholar`
 
 ### Email (spam-safe)
 
-Put your address in `links.email` in `profile.json`. It is never written into the page as plain text: visitors see a **Show email** button, and the address is assembled in their browser only when they click it, so spam bots that scan pages for addresses don't find it.
+Your address is stored in `links.emailEncoded` in `profile.json` (reversed and base64-encoded, so it never appears as plain text in the repository either). To change it, run
+
+```bash
+python3 -c "import base64,sys;print(base64.b64encode(sys.argv[1][::-1].encode()).decode())" new.address@example.org
+```
+
+and paste the output there. The address is never written into the page as plain text: visitors see a **Show email** button, and the address is assembled in their browser only when they click it, so spam bots that scan pages for addresses don't find it.
 
 ### Profile links
 
@@ -65,7 +71,7 @@ In `src/data/profile.json`:
 ```json
 "links": {
   "cv": "cv/Parul_Gupta_CV.pdf",
-  "email": "name@example.org",
+  "emailEncoded": "<see Email section below>",
   "github": "https://github.com/your-username",
   "linkedin": "https://www.linkedin.com/in/your-profile",
   "orcid": "https://orcid.org/0000-0000-0000-0000"

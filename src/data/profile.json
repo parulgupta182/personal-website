@@ -38,5 +38,6 @@
     "linkedin": "https://www.linkedin.com/in/parulgupta182/",
     "orcid": "https://orcid.org/0009-0009-7414-1360"
   },
-  "highlightAuthor": "Parul Gupta"
+  "highlightAuthor": "Parul Gupta",
+  "_email_comment": "emailEncoded keeps the address out of the source code. Create it with: python3 -c \"import base64,sys;print(base64.b64encode(sys.argv[1][::-1].encode()).decode())\" you@example.org"
 }

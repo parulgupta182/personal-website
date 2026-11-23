@@ -5,13 +5,12 @@
  */
 import Icon from './Icon.astro';
 import profile from '../data/profile.json';
-import { encodeEmail } from '../lib/facts';
 import { showPlaceholders } from '../lib/utils';
 
 interface Props { variant?: 'btn' | 'channel' }
 const { variant = 'btn' } = Astro.props;
-const email = profile.links.email;
-const enc = email ? encodeEmail(email) : '';
+const enc = (profile.links as any).emailEncoded ?? '';
+const email = enc;
 ---
 {email ? (
   variant === 'btn' ? (
