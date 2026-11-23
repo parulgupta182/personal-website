@@ -37,7 +37,7 @@
       "organisation": "NEC Laboratories Europe",
       "location": "Heidelberg, Germany",
       "points": [
-        "Designed a custom oversampling technique (Python, pandas) to generate synthetic patient data while access to real hospital data was delayed by data-privacy approvals",
+        "Designed a custom oversampling technique (Python, pandas) to generate synthetic patient data",
         "Used the synthetic data to train an existing graph neural network pipeline for clinical prediction, reducing reliance on real patient data by 70%",
         "Improved prediction accuracy from 75.0% to 80.3%",
         "Worked briefly on temporal knowledge graphs"
