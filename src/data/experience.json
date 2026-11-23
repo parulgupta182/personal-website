@@ -33,14 +33,14 @@
     {
       "start": "July 2022",
       "end": "December 2022",
-      "role": "Machine Learning Intern",
+      "role": "Machine Learning Intern, Biomedical AI Group",
       "organisation": "NEC Laboratories Europe",
       "location": "Heidelberg, Germany",
       "points": [
-        "Generated artificial (synthetic) biomedical data, working with multimodal data and synthetic oversampling techniques",
-        "Developed graph neural network models for clinical prediction",
-        "Worked briefly on temporal knowledge graphs",
-        "Improved prediction accuracy from 75.0% to 80.3%"
+        "Designed a custom oversampling technique (Python, pandas) to generate synthetic patient data while access to real hospital data was delayed by data-privacy approvals",
+        "Used the synthetic data to train an existing graph neural network pipeline for clinical prediction, reducing reliance on real patient data by 70%",
+        "Improved prediction accuracy from 75.0% to 80.3%",
+        "Worked briefly on temporal knowledge graphs"
       ]
     },
     {
